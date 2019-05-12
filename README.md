@@ -86,14 +86,13 @@ https://ru-sfera.org/threads/ehmuljacija-antiehmuljacija-detekt-i-kriptory.3612/
 **Сам криптор (x86_pe_cryptor) имеет модульную структуру:**
 
 1)modules/lazy_importer/
-
 Модуль скрытия API из таблицы импорта. Пример использования:
 
 auto base = reinterpret_cast<std::uintptr_t>(LI_FIND(LoadLibraryA)(kernel32));
+
 LI_GET(base, VirtualFree)(pFile, 0, MEM_RELEASE);
 
 2)modules/murmurhash/
-
 Реализация вычисления хеша murmurhash на ассемблере.
 
 3)modules/trash_gen_module/
