@@ -136,14 +136,16 @@ LI_GET(base, VirtualFree)(pFile, 0, MEM_RELEASE);
 
 2.Запустить файл shell_gen/Release/shell_gen.exe
 
-3. Собрать проект x86_pe_cryptor в Visual Studio 2017 или более новой.
+3.Собрать проект x86_pe_cryptor в Visual Studio 2017 или более новой.
 
 Всё, в /x86_pe_cryptor/Release/x86_pe_cryptor.exe будет сам криптор.)))
 
 Проект будет обновляться, что планируется:
 
 1)Сделать для x64.
+
 2)Рефакторинг кода.
+
 3)Что-то ещё, в зависимости от активности на форуме.)))
 
 В исходнике есть пример, запуск putty.exe:
