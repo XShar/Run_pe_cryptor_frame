@@ -156,3 +156,8 @@ LI_GET(base, VirtualFree)(pFile, 0, MEM_RELEASE);
 И:
 
 /shell_gen/Release
+
+**Детекты антивирусов, на примере трояна DarkCommet:**
+
+Изначальный детект:https://www.virustotal.com/gui/file/6be64abc0eb30411302bcff86c5de0b8d245913771b05363d7359652dc453248/detection
+Детект после обработки:https://www.virustotal.com/gui/file/005dcd7f0b5f399da879e8ec8acb06996337a569c0bf3a8634b941d0d7d23c88/detection
