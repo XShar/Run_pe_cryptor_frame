@@ -127,6 +127,7 @@ LI_GET(base, VirtualFree)(pFile, 0, MEM_RELEASE);
 Есть два проекта в Visual Studio 2017 или более новой:
 
 1)shell_gen - Генерирует массив зашифрованных байт, файл /modules/data_protect.h.
+
 2)x86_pe_cryptor - Сам криптор.
 
 Для работы необходимо сделать следующее:
