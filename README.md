@@ -85,26 +85,32 @@ https://ru-sfera.org/threads/ehmuljacija-antiehmuljacija-detekt-i-kriptory.3612/
 
 **Сам криптор (x86_pe_cryptor) имеет модульную структуру:**
 
-1)modules/lazy_importer/
+**1)modules/lazy_importer/**
+
 Модуль скрытия API из таблицы импорта. Пример использования:
 
 auto base = reinterpret_cast<std::uintptr_t>(LI_FIND(LoadLibraryA)(kernel32));
 
 LI_GET(base, VirtualFree)(pFile, 0, MEM_RELEASE);
 
-2)modules/murmurhash/
+**2)modules/murmurhash/**
+
 Реализация вычисления хеша murmurhash на ассемблере.
 
-3)modules/trash_gen_module/
+**3)modules/trash_gen_module/**
+
 Реализация модуля, для генерация случайных инструкций, генерации случаных API винды и получение случайного числа на ассемблере, более подробное описание здесь:https://github.com/XShar/simple_trashe_gen_module
 
-4)modules/xtea/
+**4)modules/xtea/**
+
 Реализация алгоритма шифрование xtea на ассемблере.
 
-5)modules/run_pe/
+**5)modules/run_pe/**
+
 Реализация функции запуска, расшифрованного массива PE-файла в памяти, путем создания процесса.
 
-6)modules/antiemul/
+**6)modules/antiemul/**
+
 Функции антиэмуляции.
 
 **Характеристики получившегося криптора:**
