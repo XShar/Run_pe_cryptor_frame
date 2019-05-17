@@ -29,6 +29,8 @@ regw18  db 0D1h, 0C8h ;ror reg1, 1
 regw19  db 08Dh, 00h  ;lea reg1, [reg2]
 regd1   db 0B8h; mov reg1, rnd
 
+extrn _debug_print
+
 ;---------------------------------------------
 ; Интерфейсная функция, для получения случайного числа в нужном интервале
 ; stdcall do_Random_EAX,min,max

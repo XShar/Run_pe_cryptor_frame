@@ -5,6 +5,11 @@
 #include "../lazy_importer/lazy_importer.hpp"
 #include "../../modules/data_crypt_string.h"
 
+#include "../../modules/metamorph_code/config.h"
+#include "../../modules/metamorph_code/boost/preprocessor/repetition/repeat_from_to.hpp"
+#include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/repetition/repeat_from_to.hpp>
+
 static uint32_t eax_random = 0;
 
 extern "C" {
@@ -14,6 +19,15 @@ extern "C" {
 extern "C" {
 	uint32_t __stdcall do_Random_EAX(uint32_t min, uint32_t max);
 }
+
+extern "C" {
+	void __cdecl  debug_print(unsigned line) {
+		//Морфинг кода при компиляции************************************************************
+        #define DECL(z, n, text) BOOST_PP_CAT(text, n) ();
+		BOOST_PP_REPEAT_FROM_TO(START_MORPH_CODE, END_MORPH_CODE, DECL, function)
+		//Морфинг кода при компиляции************************************************************
+	}
+};
 
 static void fake_api_calls(void) {
 

