@@ -33,6 +33,9 @@
     <ClCompile Include="..\..\modules\metamorph_code\morph.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\modules\run_pe\pe_hdrs_helper.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Object Include="..\..\modules\murmurhash\marmarhash.obj">
@@ -50,6 +53,27 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="..\..\modules\metamorph_code\config.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\run_pe\ntddk.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\run_pe\ntdll_undoc.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\run_pe\pe_hdrs_helper.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\run_pe\pe_raw_to_virtual.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\run_pe\relocate.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\run_pe\target_util.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\run_pe\createproc.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

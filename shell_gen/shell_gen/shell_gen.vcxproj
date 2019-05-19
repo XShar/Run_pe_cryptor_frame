@@ -158,6 +158,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\modules\data_to_protect.h" />
+    <ClInclude Include="..\..\modules\metamorph_code\config.h" />
     <ClInclude Include="..\..\modules\modules.h" />
     <ClInclude Include="..\..\modules\trash_gen_module\fake_api.h" />
     <ClInclude Include="pch.h" />
