@@ -80,7 +80,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
-    <IncludePath>C:\Users\Oleg\Documents\GitHub\Run_pe_cryptor_frame\modules\metamorph_code;C:\Users\Oleg\Documents\GitHub\Run_pe_cryptor_frame\modules;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\modules\;..\..\modules\metamorph_code;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
