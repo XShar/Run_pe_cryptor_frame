@@ -166,6 +166,7 @@
     <ClCompile Include="..\..\modules\metamorph_code\morph.cpp" />
     <ClCompile Include="..\..\modules\run_pe\pe_hdrs_helper.cpp" />
     <ClCompile Include="..\..\modules\run_pe\run_pe.cpp" />
+    <ClCompile Include="..\..\modules\simple_mutate_pe\PeMutator.cpp" />
     <ClCompile Include="..\..\modules\trash_gen_module\fake_api.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -192,6 +193,8 @@
     <ClInclude Include="..\..\modules\run_pe\pe_raw_to_virtual.h" />
     <ClInclude Include="..\..\modules\run_pe\relocate.h" />
     <ClInclude Include="..\..\modules\run_pe\target_util.h" />
+    <ClInclude Include="..\..\modules\simple_mutate_pe\LDasm.h" />
+    <ClInclude Include="..\..\modules\simple_mutate_pe\PeMutator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
