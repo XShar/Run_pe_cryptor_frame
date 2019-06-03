@@ -175,7 +175,7 @@ LI_GET(base, VirtualFree)(pFile, 0, MEM_RELEASE);
 
 Проект будет обновляться, что планируется:
 
-1)Сделать для x64.
+1)Сделать для x64 (https://github.com/XShar/Run_pe_cryptor_x64).
 
 2)Рефакторинг кода.
 
